@@ -14,7 +14,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "USERS")
+@Entity
+@Table(name = "USERS")
 public class Users {
 
     @Id
@@ -36,9 +37,11 @@ public class Users {
     @Column(name = "user_email")
     private String email;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    @Enumerated(EnumType.STRING)
+    private Roles role;
+
+    @Column
+    private Boolean active = true;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Car> cars = new ArrayList<>();
