@@ -2,7 +2,6 @@ package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.Enums.Roles;
 import com.autowerkstatt.autowerkstatt.entity.Users;
-import com.autowerkstatt.autowerkstatt.service.RoleService;
 import com.autowerkstatt.autowerkstatt.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,9 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UsersController {
-
-    @Autowired
-    private RoleService roleService;
 
     @Autowired
     private UsersService usersService;
@@ -47,18 +43,18 @@ public class UsersController {
         return "mainPageUser";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping(value = "/register")
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView("registration");
         modelAndView.addObject("user", new Users());
         return modelAndView;
     }
 
-    @PostMapping(value = "/registartion-user")
+    @PostMapping(value = "/registartion")
     public String registration(@ModelAttribute(name = "user") Users user) {
-        user.setRoles(this.roleService.getRoleByName(Roles.USER.name()));
+        user.setRole(Roles.USER);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         this.usersService.save(user);
-        return "registration";
+        return "login";
     }
 }

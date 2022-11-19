@@ -1,7 +1,6 @@
 package com.autowerkstatt.autowerkstatt.service;
 
 import com.autowerkstatt.autowerkstatt.dao.UsersRepository;
-import com.autowerkstatt.autowerkstatt.entity.Role;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -33,10 +32,8 @@ public class UsersService implements UserDetailsService {
         }
 
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        List<Role> roles = user.getRoles();
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.toString()));
-        }
+        authorities.add(new SimpleGrantedAuthority(user.getRole().name()));
+
 
         return new User(user.getEmail(), user.getPassword(), authorities);
     }
