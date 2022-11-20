@@ -2,7 +2,7 @@ package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.Enums.Roles;
 import com.autowerkstatt.autowerkstatt.entity.Users;
-import com.autowerkstatt.autowerkstatt.service.UsersService;
+import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UsersController {
 
     @Autowired
-    private UsersService usersService;
+    private UsersDetailsServiceImpl usersDetailsService;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -54,7 +54,7 @@ public class UsersController {
     public String registration(@ModelAttribute(name = "user") Users user) {
         user.setRole(Roles.USER);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        this.usersService.save(user);
+        this.usersDetailsService.save(user);
         return "login";
     }
 }
