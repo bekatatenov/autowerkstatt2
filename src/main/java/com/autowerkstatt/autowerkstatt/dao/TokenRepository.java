@@ -1,5 +1,6 @@
 package com.autowerkstatt.autowerkstatt.dao;
 
+import com.autowerkstatt.autowerkstatt.entity.Token;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -7,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users, Long> {
+public interface TokenRepository extends JpaRepository<Token, Long> {
 
-    Users findFirstByEmail(String email);
+    Optional<Token> findByToken(Integer token);
 
-    Optional<Users> findByEmail(String email);
+    Optional<Token> findByTokenAndUsers(Integer token, Users user);
 }
