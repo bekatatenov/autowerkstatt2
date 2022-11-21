@@ -1,5 +1,6 @@
 package com.autowerkstatt.autowerkstatt.controller;
 
+import com.autowerkstatt.autowerkstatt.dto.Item;
 import com.autowerkstatt.autowerkstatt.entity.Token;
 import com.autowerkstatt.autowerkstatt.enums.Roles;
 import com.autowerkstatt.autowerkstatt.entity.Users;
@@ -74,27 +75,29 @@ public class UsersController {
     }
 
     @PostMapping(value = "/passwordRecoveryEmail")
-    public String getEmailForResetPassword(@RequestParam String email, Model model) {
+    public ModelAndView getEmailForResetPassword(@RequestParam String email) {
+        ModelAndView modelAndView = new ModelAndView("newPasswordUser");
         Users saved = usersDetailsService.findByEmailUser(email);
         Token token = tokenService.saveToken(saved, tokenService.makeToken());
 
         emailSender.sendEmail(saved.getEmail(), "Восстановление пароля", String.valueOf(token.getToken()));
-        return "newPassword";
+        Item item = new Item();
+        item.setUserEmail(email);
+        modelAndView.addObject("reset", item);
+        return modelAndView;
     }
 
-    @GetMapping(value = "/newPassword")
-    public String newPasswordPage() {
-        return "newPassword";
-    }
+//    @GetMapping(value = "/newPassword")
+//    public String newPasswordPage() {
+//        return "newPassword";
+//    }
 
     @PostMapping(value = "/newPasswordUser")
-    public String newPassword(@RequestParam(name = "userEmail", required = false) String userEmail,
-                              @RequestParam(name = "token", required = false) String token,
-                              @RequestParam(name = "newPassword", required = false) String newPassword) {
-        Users users = usersDetailsService.findByEmailUser(userEmail);
-        Token byUserAndToken = tokenService.findByUserAndToken(users, Integer.parseInt(token));
+    public String newPassword(@ModelAttribute(name = "reset") Item item) {
+        Users users = usersDetailsService.findByEmailUser(item.getUserEmail());
+        Token byUserAndToken = tokenService.findByUserAndToken(users, item.getToken());
 
-        users.setPassword(bCryptPasswordEncoder.encode(newPassword));
+        users.setPassword(bCryptPasswordEncoder.encode(item.getPassword()));
         usersDetailsService.save(users);
 
         tokenService.deleteToken(byUserAndToken);

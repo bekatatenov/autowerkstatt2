@@ -1,6 +1,7 @@
 package com.autowerkstatt.autowerkstatt.entity;
 
 import com.autowerkstatt.autowerkstatt.enums.Faults;
+import com.autowerkstatt.autowerkstatt.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,4 +39,8 @@ public class Notification {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users user;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 }
