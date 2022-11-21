@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <div class="form-group blu-margin">
+        <select name="Marks">
+            <option th:each="Marks : ${T(com.autowerkstatt.autowerkstatt.enums.Marks).values()}"
+                    th:text="${Marks}"
+                    th:value="${Marks}"></option>
+        </select>
+        <select class="form-control" id="Car">
+            <option value="0">select mark</option>
+            <option th:each="car : ${car}" th:value="${user.name}" th:text="${user.name}"></option>
+        </select>
+    </div>
+</form>
+</body>
+</html>
