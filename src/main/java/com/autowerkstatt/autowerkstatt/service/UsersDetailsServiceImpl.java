@@ -2,6 +2,9 @@ package com.autowerkstatt.autowerkstatt.service;
 
 import com.autowerkstatt.autowerkstatt.dao.UsersRepository;
 import com.autowerkstatt.autowerkstatt.entity.Users;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import net.minidev.asm.ex.NoSuchFieldException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -14,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class UsersDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -36,5 +41,10 @@ public class UsersDetailsServiceImpl implements UserDetailsService {
 
 
         return new User(user.getEmail(), user.getPassword(), authorities);
+    }
+
+    public Users findByEmailUser(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new NoSuchFieldException("Не найден пользователь по email: " + email));
     }
 }
