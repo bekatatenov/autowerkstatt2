@@ -2,8 +2,7 @@ package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.enums.Roles;
 import com.autowerkstatt.autowerkstatt.entity.Users;
-import com.autowerkstatt.autowerkstatt.service.RoleService;
-import com.autowerkstatt.autowerkstatt.service.UsersService;
+import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,10 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UsersController {
 
     @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private UsersService usersService;
+    private UsersDetailsServiceImpl usersService;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -56,7 +52,7 @@ public class UsersController {
 
     @PostMapping(value = "/registartion-user")
     public String registration(@ModelAttribute(name = "user") Users user) {
-        user.setRoles(this.roleService.getRoleByName(Roles.USER.name()));
+        user.setRole(Roles.USER);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         this.usersService.save(user);
         return "registration";
