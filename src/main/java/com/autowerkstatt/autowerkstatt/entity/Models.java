@@ -1,5 +1,6 @@
 package com.autowerkstatt.autowerkstatt.entity;
 
+import com.autowerkstatt.autowerkstatt.enums.Marks;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ public class Models {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(name = "marks")
+    @Enumerated(EnumType.STRING)
     private Marks marks;
-
 }
