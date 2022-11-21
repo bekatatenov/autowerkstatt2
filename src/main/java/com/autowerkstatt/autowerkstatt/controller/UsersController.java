@@ -1,6 +1,6 @@
 package com.autowerkstatt.autowerkstatt.controller;
 
-import com.autowerkstatt.autowerkstatt.Enums.Roles;
+import com.autowerkstatt.autowerkstatt.enums.Roles;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import com.autowerkstatt.autowerkstatt.service.RoleService;
 import com.autowerkstatt.autowerkstatt.service.UsersService;
