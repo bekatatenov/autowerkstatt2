@@ -7,23 +7,18 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "CARS")
-public class Car {
+@Entity(name = "MARKS")
+public class Marks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "vin_code")
-    private String vin_code;
-
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Models models;
-
-
+    @Column(name = "name")
+    private String name;
 
 }

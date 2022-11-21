@@ -1,6 +1,6 @@
 package com.autowerkstatt.autowerkstatt.entity;
 
-import com.autowerkstatt.autowerkstatt.Enums.Roles;
+import com.autowerkstatt.autowerkstatt.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

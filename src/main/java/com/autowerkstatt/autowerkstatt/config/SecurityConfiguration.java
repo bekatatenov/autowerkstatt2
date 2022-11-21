@@ -29,8 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private String rolesQuery;
 
     @Bean
-    public PasswordEncoder passwordEncoder()
-    {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -70,9 +69,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
-        web.ignoring().antMatchers("/resources/**","/templates/**" ,"/static/**", "registration");
+        web.ignoring().antMatchers("/resources/**", "/templates/**", "/static/**", "registration");
     }
-
 
 
 }
