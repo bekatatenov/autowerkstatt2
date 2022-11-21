@@ -2,22 +2,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<form>
+<form th:action="@{car-save}" method="post" th:object="${car}">
     <div class="form-group blu-margin">
-        <select name="Marks">
-            <option th:each="Marks : ${T(com.autowerkstatt.autowerkstatt.enums.Marks).values()}"
-                    th:text="${Marks}"
-                    th:value="${Marks}"></option>
-        </select>
-        <select class="form-control" id="Car">
-            <option value="0">select mark</option>
-            <option th:each="car : ${car}" th:value="${user.name}" th:text="${user.name}"></option>
-        </select>
+        <label>
+            <select name="Marks">
+                <option th:each="Marks : ${T(com.autowerkstatt.autowerkstatt.enums.Marks).values()}"
+                        th:text="${Marks}"
+                        th:value="${Marks}"></option>
+            </select>
+        </label>
+        <br>
+        <label for="Car"></label><select class="form-control" id="Car">
+        <option value="0">select mark</option>
+        <option th:each="car : ${car}" th:value="${car.models}" th:text="${car.models}"></option>
+    </select>
     </div>
+    <div><label> VIN CODE : <input th:value="${car.vin_code}" type="text" name="text"/> </label></div>
+    <div><input type="submit" value="Добавить машину"/></div>
 </form>
 </body>
 </html>
