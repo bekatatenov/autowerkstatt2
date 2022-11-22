@@ -23,8 +23,14 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "dete_time")
+    @Column(name = "date_of_creation")
     private Date dateTime;
+
+    @Column(name = "date_from")
+    private Date dateFrom;
+
+    @Column(name = "date_before")
+    private Date dateBefore;
 
     @Column(name = "price")
     private BigDecimal price;

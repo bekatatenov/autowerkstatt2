@@ -2,15 +2,15 @@ package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.dto.Item;
 import com.autowerkstatt.autowerkstatt.entity.Token;
-import com.autowerkstatt.autowerkstatt.enums.Roles;
 import com.autowerkstatt.autowerkstatt.entity.Users;
+import com.autowerkstatt.autowerkstatt.enums.Roles;
 import com.autowerkstatt.autowerkstatt.service.EmailSenderService;
 import com.autowerkstatt.autowerkstatt.service.TokenService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,6 +50,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/mainPageUser", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('USER')")
     public String mainPageUser() {
         return "mainPageUser";
     }
