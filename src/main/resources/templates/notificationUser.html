@@ -2,21 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
-    <title>Notification User</title>
+    <title>Notification</title>
 </head>
 <body>
 <h3>Notification Table User</h3>
 <table border="3">
-<tr>
-    <th>ID</th>
-    <th>FIRST NAME</th>
-    <th>LAST NAME</th>
-    <th>DATE TIME</th>
-    <th>PRICE</th>
-    <th>CAR</th>
-    <th>STATUS</th>
-</tr>
+    <tr>
+        <th>ID</th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th>DATE OF CREATION</th>
+        <th>DATE FROM</th>
+        <th>DATE BEFORE</th>
+        <th>PRICE</th>
+        <th>CAR</th>
+        <th>STATUS</th>
+    </tr>
+    <tr th:each="notification : ${notifications}">
+        <td th:text="${notification.id}"></td>
+        <td th:text="${notification.user.firstName}"></td>
+        <td th:text="${notification.user.lastName}"></td>
+        <td th:text="${notification.dateTime}"></td>
+        <td th:text="${notification.dateFrom}"></td>
+        <td th:text="${notification.dateBefore}"></td>
+        <td th:text="${notification.price}"></td>
+        <td th:text="${notification.car.models.name}"></td>
+        <td th:text="${notification.status}"></td>
+    </tr>
 </table>
+<br>
+<form th:action="@{/mainPage-notification}" method="post">
+    <input type="submit" value="Return Main Page">
+</form>
 </body>
 </html>
