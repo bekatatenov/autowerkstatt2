@@ -88,11 +88,6 @@ public class UsersController {
         return modelAndView;
     }
 
-//    @GetMapping(value = "/newPassword")
-//    public String newPasswordPage() {
-//        return "newPassword";
-//    }
-
     @PostMapping(value = "/newPasswordUser")
     public String newPassword(@ModelAttribute(name = "reset") Item item) {
         Users users = usersDetailsService.findByEmailUser(item.getUserEmail());
