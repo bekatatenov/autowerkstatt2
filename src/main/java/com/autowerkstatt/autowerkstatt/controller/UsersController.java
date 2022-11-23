@@ -50,7 +50,7 @@ public class UsersController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/registartion-user")
+    @PostMapping(value = "/registartion")
     public String registration(@ModelAttribute(name = "user") Users user) {
         user.setRole(Roles.USER);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
