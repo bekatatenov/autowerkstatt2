@@ -21,9 +21,7 @@ public class Car {
     @Column(name = "vin_code")
     private String vin_code;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Models models;
-
-
 
 }
