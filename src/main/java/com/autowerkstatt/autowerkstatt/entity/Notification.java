@@ -38,6 +38,9 @@ public class Notification {
     @Enumerated(EnumType.STRING)
     private Faults faults;
 
+    @Column(name = "description")
+    private String description;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;

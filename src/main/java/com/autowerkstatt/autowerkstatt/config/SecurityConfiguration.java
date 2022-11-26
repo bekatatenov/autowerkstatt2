@@ -53,8 +53,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests()
                 .antMatchers("/", "/login", "/register", "/registration", "/forgotPassword", "/passwordRecoveryEmail", "/newPasswordUser").permitAll()
-                .antMatchers("/mainPageUser", "/user-notification").authenticated()
-                .antMatchers( "/mainPageUser", "/user-notification").hasAnyAuthority("USER")
+                .antMatchers( "/user-notification", "/mainPageUser", "/userDropDownList").authenticated()
+                .antMatchers("/user-notification", "/mainPageUser", "/userDropDownList").hasAnyAuthority("USER")
                 .and().csrf().disable()
                 .formLogin().successHandler(customizeAuthenticationSuccessHandler)
                 .loginPage("/login").failureUrl("/login?error=true")
