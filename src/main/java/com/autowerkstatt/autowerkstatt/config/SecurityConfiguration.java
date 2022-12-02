@@ -53,8 +53,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.
                 authorizeRequests()
                 .antMatchers("/", "/login", "/register", "/registration", "/forgotPassword", "/passwordRecoveryEmail", "/newPasswordUser").permitAll()
-                .antMatchers("/mainPageUser", "/user-notification").authenticated()
-                .antMatchers( "/mainPageUser", "/user-notification").hasAnyAuthority("USER")
+                .antMatchers("/mainPageUser", "/user-notification", "/saveCarOpen", "/getModelsCar", "/addCarUser").authenticated()
+                .antMatchers( "/mainPageUser", "/user-notification", "/saveCarOpen", "/getModelsCar", "/addCarUser").hasAnyAuthority("USER")
                 .and().csrf().disable()
                 .formLogin().successHandler(customizeAuthenticationSuccessHandler)
                 .loginPage("/login").failureUrl("/login?error=true")
@@ -69,7 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
-        web.ignoring().antMatchers("/resources/**", "/templates/**", "/static/**", "registration");
+        web.ignoring().antMatchers("/resources/**", "/templates/**", "/static/**", "registration","static/js/**");
     }
 
 

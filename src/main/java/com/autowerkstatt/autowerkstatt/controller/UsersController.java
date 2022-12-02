@@ -67,7 +67,7 @@ public class UsersController {
         user.setRole(Roles.USER);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         this.usersDetailsService.save(user);
-        return "registration";
+        return "login";
     }
 
     @GetMapping(value = "/forgotPassword")

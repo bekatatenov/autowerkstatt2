@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script th:src="@{/js/saveCarUser.js}"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-white text-center">
+            <h3>Форма для сохранения автомобиля пользователя</h3>
+            <h4>Выберите марку, а затем модель вашего авто</h4>
+        </div>
+        <div class="card-body">
+            <form th:action="@{addCarUser}" th:object="${car}" method="post">
+                <div class="row">
+                    <div class="col-2">Marks</div>
+                    <div class="col-8">
+                        <select id="marks" class="form-control">
+                            <option value='-1'>SELECT</option>
+                            <option th:each="mark : ${marksList}" th:value="${mark[0]}"
+                                    th:text="${mark[1]}"/>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-2">Models</div>
+                    <div class="col-8">
+                        <select id="models" class="form-control">
+                            <option value='-1'>SELECT</option>
+                        </select>
+                        <br>
+                        <div><input type="submit" value="Добавить машину"/></div>
+                    </div>
+                </div>
+                <!--        <input hidden="hidden" type="email" th:value="${car.user.getEmail()}" name="userEmail">-->
+                <!--        <input hidden="hidden" type="text" th:value="${car.models.getName()}" name="modelName">-->
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"></script>
+</body>
+</html>

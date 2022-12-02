@@ -1,17 +1,16 @@
 package com.autowerkstatt.autowerkstatt.entity;
 
-import com.autowerkstatt.autowerkstatt.enums.Marks;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@Builder
 @Entity(name = "MODELS")
 public class Models {
 
@@ -22,7 +21,6 @@ public class Models {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "marks")
-    @Enumerated(EnumType.STRING)
-    private Marks marks;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Mark mark;
 }
