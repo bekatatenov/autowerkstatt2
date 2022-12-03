@@ -1,6 +1,7 @@
 package com.autowerkstatt.autowerkstatt.service;
 
 import com.autowerkstatt.autowerkstatt.dao.UsersRepository;
+import com.autowerkstatt.autowerkstatt.entity.Models;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @NoArgsConstructor
@@ -46,5 +48,9 @@ public class UsersDetailsServiceImpl implements UserDetailsService {
     public Users findByEmailUser(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new NoSuchFieldException("Не найден пользователь по email: " + email));
+    }
+
+    public Users findByUsersId(Long id) {
+        return this.userRepository.findById(id).orElseThrow(() -> new NoSuchElementException(String.format("Нет пользователя по id: " + id)));
     }
 }

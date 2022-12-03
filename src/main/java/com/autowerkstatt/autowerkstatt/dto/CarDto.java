@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarDto {
-    private String userEmail;
-    private String modelName;
+    private Long userId;
+    private Long modelsId;
+//    private String modelsName;
 }

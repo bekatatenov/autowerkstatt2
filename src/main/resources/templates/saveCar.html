@@ -4,11 +4,33 @@
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script th:src="@{/js/saveCarUser.js}"></script>
+<!--    <script th:src="@{/js/saveCarUser.js}"></script>-->
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<script>
+    $(document).ready(function () {
+        $('#marks').change(function () {
+            var marksId = $(this).val();
+            var s = '<option value=' + -1 + '>SELECT</option>';
+            if (marksId > 0) {
+                $.ajax({
+                    url: 'getModelsCar',
+                    data: {"marksId": marksId},
+                    success: function (result) {
+                        var result = JSON.parse(result);
+                        for (var i = 0; i < result.length; i++) {
+                            s += '<option th:value="' + result[i][0] + '">' + result[i][1] + '</option>';
+                        }
+                        $('#models').html(s);
+                    }
+                });
+            }
+            $('#models').html(s);
+        });
+    });
+</script>
 <div class="container">
     <div class="card">
         <div class="card-header bg-primary text-white text-center">
@@ -17,6 +39,8 @@
         </div>
         <div class="card-body">
             <form th:action="@{addCarUser}" th:object="${car}" method="post">
+                <input type="number" th:value="${car.getUserId()}" name="userId">
+                <input type="number" th:value="${car.getModelsId()}" name="modelsId">
                 <div class="row">
                     <div class="col-2">Marks</div>
                     <div class="col-8">
@@ -32,15 +56,13 @@
                 <div class="row">
                     <div class="col-2">Models</div>
                     <div class="col-8">
-                        <select id="models" class="form-control">
-                            <option value='-1'>SELECT</option>
+                        <select id="models" class="form-control" th:field="*{modelsId}">
+                            <option th:value='-1'>SELECT</option>
                         </select>
                         <br>
                         <div><input type="submit" value="Добавить машину"/></div>
                     </div>
                 </div>
-                <!--        <input hidden="hidden" type="email" th:value="${car.user.getEmail()}" name="userEmail">-->
-                <!--        <input hidden="hidden" type="text" th:value="${car.models.getName()}" name="modelName">-->
             </form>
         </div>
     </div>
