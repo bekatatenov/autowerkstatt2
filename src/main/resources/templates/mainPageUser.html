@@ -37,8 +37,7 @@
                             Мой Профиль
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/create-car">Добавить
-                                машину</a></li>
+                            <li><a class="dropdown-item" href="/saveCarOpen">Добавить машину</a></li>
                             <li><a class="dropdown-item" href="/Роут_для_вывода_списка автомобилей">Мои Машины</a></li>
                             <li><a class="dropdown-item" href="/login">Выход</a></li>
                         </ul>
@@ -75,7 +74,7 @@
 
 <br>
 
-<div class="row row-cols-1 row-cols-md-3 g-4 wrapper-content">
+<div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
         <div class="card">
             <img src="https://img5.lalafo.com/i/posters/original/1f/d8/0b28d1129a4c2b8f74373ba002a7.jpeg"
@@ -84,9 +83,7 @@
                 <h5 class="card-title">Ходовка</h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
                     content. This content is a little bit longer.</p>
-                <a type="button" href="#" th:onclick="'showDetails{\'' + @{/userDropDownList} + \''}'" class="btn btn-primary">
-                    Оставить заявку
-                </a>
+                <a href="Роут для оставления заявки клиента" class="btn btn-primary">Оставить заявку</a>
             </div>
         </div>
     </div>
@@ -97,8 +94,7 @@
                 <h5 class="card-title">ДВС</h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
                     content. This content is a little bit longer.</p>
-                <a href="Роут для оставления заявки клиента" class="btn btn-primary" data-toggle="modal">Оставить
-                    заявку</a>
+                <a href="Роут для оставления заявки клиента" class="btn btn-primary">Оставить заявку</a>
             </div>
         </div>
     </div>
@@ -124,16 +120,8 @@
                     content. This content is a little bit longer.</p>
                 <a href="Роут для оставления заявки клиента" class="btn btn-primary">Оставить заявку</a>
             </div>
-
-<!--            <th:block th:replace="_modals :: modal('modalHodovka')">modal</th:block>-->
         </div>
     </div>
-    <object th:include="partial/modal" th:remove="tag"></object>
 </div>
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
 </body>
 </html>

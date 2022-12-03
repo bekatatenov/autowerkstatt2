@@ -18,10 +18,10 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "vin_code")
-    private String vin_code;
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Models models;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Users user;
 
 }

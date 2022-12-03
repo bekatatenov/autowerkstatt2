@@ -7,15 +7,21 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarService {
     @Autowired
-    private CarRepository carRepository;
+    private CarRepository repository;
 
-    public void carSave(Car car) {
-        carRepository.save(car);
+    public void addCar(Car car) {
+        this.repository.save(car);
     }
 
+    public Car getByModel(String modelName) {
+        return this.repository.findByModels(modelName)
+                .orElseThrow(() -> new NoSuchElementException("Не найдена модель по названию: " + modelName));
+    }
 }

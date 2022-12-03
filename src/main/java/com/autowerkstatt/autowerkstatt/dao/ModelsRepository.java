@@ -1,13 +1,12 @@
 package com.autowerkstatt.autowerkstatt.dao;
 
-import com.autowerkstatt.autowerkstatt.entity.Car;
+import com.autowerkstatt.autowerkstatt.entity.Models;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, Long> {
-
-    Optional<Car> findByModels(String modelAndMarkName);
+public interface ModelsRepository extends JpaRepository<Models, Long> {
+   Optional <Models> findByName(String modelsName);
 }

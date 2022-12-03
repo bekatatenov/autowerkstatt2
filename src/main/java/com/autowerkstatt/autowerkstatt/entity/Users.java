@@ -40,7 +40,4 @@ public class Users {
 
     @Column
     private Boolean active = true;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Car> cars = new ArrayList<>();
 }
