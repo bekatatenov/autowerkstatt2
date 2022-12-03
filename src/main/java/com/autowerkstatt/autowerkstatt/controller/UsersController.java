@@ -1,21 +1,29 @@
 package com.autowerkstatt.autowerkstatt.controller;
 
-import com.autowerkstatt.autowerkstatt.dto.Item;
+import com.autowerkstatt.autowerkstatt.dto.NewPasswordUser;
 import com.autowerkstatt.autowerkstatt.entity.Token;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import com.autowerkstatt.autowerkstatt.enums.Roles;
 import com.autowerkstatt.autowerkstatt.service.EmailSenderService;
 import com.autowerkstatt.autowerkstatt.service.TokenService;
+import com.autowerkstatt.autowerkstatt.service.UserService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class UsersController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private UsersDetailsServiceImpl usersDetailsService;
@@ -50,7 +58,6 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/mainPageUser", method = RequestMethod.GET)
-    @PreAuthorize("hasAuthority('USER')")
     public String mainPageUser() {
         return "mainPageUser";
     }
@@ -82,19 +89,14 @@ public class UsersController {
         Token token = tokenService.saveToken(saved, tokenService.makeToken());
 
         emailSender.sendEmail(saved.getEmail(), "Восстановление пароля", String.valueOf(token.getToken()));
-        Item item = new Item();
+        NewPasswordUser item = new NewPasswordUser();
         item.setUserEmail(email);
         modelAndView.addObject("reset", item);
         return modelAndView;
     }
 
-//    @GetMapping(value = "/newPassword")
-//    public String newPasswordPage() {
-//        return "newPassword";
-//    }
-
     @PostMapping(value = "/newPasswordUser")
-    public String newPassword(@ModelAttribute(name = "reset") Item item) {
+    public String newPassword(@ModelAttribute(name = "reset") NewPasswordUser item) {
         Users users = usersDetailsService.findByEmailUser(item.getUserEmail());
         Token byUserAndToken = tokenService.findByUserAndToken(users, item.getToken());
 
@@ -104,5 +106,13 @@ public class UsersController {
         tokenService.deleteToken(byUserAndToken);
 
         return "login";
+    }
+
+    @RequestMapping(value = "/userDropDownList", method = RequestMethod.GET)
+    public String populateList(Model model) {
+        Users users = new Users();
+        model.addAttribute("users", users);
+        model.addAttribute("usersList", userService.findAll());
+        return "mainPageUser";
     }
 }
