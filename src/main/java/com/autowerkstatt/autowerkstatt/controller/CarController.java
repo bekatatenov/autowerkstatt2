@@ -60,8 +60,7 @@ public class CarController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         Users users = usersDetailsService.findByEmailUser(auth.getName());
-//        Models models = modelsService.findByModelsName(carDto.getModelsName());
-        Models models = modelsService.findByModelId(carDto.getModelsId());
+        Models models = modelsService.findByModelsName(carDto.getModelsName());
 
         Car car = new Car();
         car.setUser(users);

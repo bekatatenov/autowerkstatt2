@@ -11,6 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CarDto {
     private Long userId;
-    private Long modelsId;
-//    private String modelsName;
+    private String modelsName;
 }
