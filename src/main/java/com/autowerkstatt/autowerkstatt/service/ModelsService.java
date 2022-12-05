@@ -5,6 +5,8 @@ import com.autowerkstatt.autowerkstatt.entity.Models;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class ModelsService {
 

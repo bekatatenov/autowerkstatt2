@@ -1,14 +1,22 @@
 package com.autowerkstatt.autowerkstatt.controller;
 
+import com.autowerkstatt.autowerkstatt.dto.SubmitApplicationUserFaultsDto;
+import com.autowerkstatt.autowerkstatt.entity.Car;
 import com.autowerkstatt.autowerkstatt.entity.Notification;
 import com.autowerkstatt.autowerkstatt.entity.Users;
+import com.autowerkstatt.autowerkstatt.enums.Faults;
+import com.autowerkstatt.autowerkstatt.enums.Status;
+import com.autowerkstatt.autowerkstatt.service.CarService;
 import com.autowerkstatt.autowerkstatt.service.NotificationService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -19,6 +27,9 @@ public class NotificationController {
 
     @Autowired
     private UsersDetailsServiceImpl usersDetailsService;
+
+    @Autowired
+    private CarService carService;
 
     @GetMapping(value = "/user-notification")
     public String userNotificationList(Model model) {
@@ -32,15 +43,122 @@ public class NotificationController {
         return "mainPageUser";
     }
 
-    @GetMapping(value = "/get-modal-hodovka")
-    public String modalHodovka() {
-        return "modalHodovka";
+    @GetMapping(value = "/submit-application-faults-hodovka")
+    public String submitApplicationFaultsUserHodovka(Model model) {
+        List<Car> carList = carService.getAllCarUser();
+        model.addAttribute("carUserList", carList);
+        model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
+        return "submitApplicationUserFaultsHodovka";
     }
 
-    @PostMapping(value = "/post-modal-hodovka")
-    public String requestUserHodovka(@ModelAttribute(name = "notification") Notification notification) {
-        Users users = usersDetailsService.findByEmailUser(notification.getUser().getEmail());
+    @PostMapping(value = "/submit-application-hodovka")
+    public String submitApplicationHodovka(@ModelAttribute(name = "submitApplication") SubmitApplicationUserFaultsDto submitApplicationUserFaultsDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+        Car car = carService.findById(submitApplicationUserFaultsDto.getCarId());
+
+        Notification notification = new Notification();
         notification.setUser(users);
+        notification.setCar(car);
+        if (car != null) {
+            notification.setMark(car.getModels().getMark().getName());
+            notification.setModel(car.getModels().getName());
+        }
+        notification.setDateTime(new Date());
+        notification.setStatus(Status.NEW);
+        notification.setFaults(Faults.HODOVKA);
+        notification.setDescription(submitApplicationUserFaultsDto.getDescription());
+        this.notificationService.save(notification);
+        return "mainPageUser";
+    }
+
+    @GetMapping(value = "/submit-application-faults-DVS")
+    public String submitApplicationFaultsUserDVS(Model model) {
+        List<Car> carList = carService.getAllCarUser();
+        model.addAttribute("carUserList", carList);
+        model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
+        return "submitApplicationUserFaultsDVS";
+    }
+
+    @PostMapping(value = "/submit-application-DVS")
+    public String submitApplicationDVS(@ModelAttribute(name = "submitApplication") SubmitApplicationUserFaultsDto submitApplicationUserFaultsDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+        Car car = carService.findById(submitApplicationUserFaultsDto.getCarId());
+
+        Notification notification = new Notification();
+        notification.setUser(users);
+        notification.setCar(car);
+        if (car != null) {
+            notification.setMark(car.getModels().getMark().getName());
+            notification.setModel(car.getModels().getName());
+        }
+        notification.setDateTime(new Date());
+        notification.setStatus(Status.NEW);
+        notification.setFaults(Faults.INTERNAL_COMBUSTION_ENGINE);
+        notification.setDescription(submitApplicationUserFaultsDto.getDescription());
+        this.notificationService.save(notification);
+        return "mainPageUser";
+    }
+
+    @GetMapping(value = "/submit-application-faults-electrician")
+    public String submitApplicationFaultsUserElectrician(Model model) {
+        List<Car> carList = carService.getAllCarUser();
+        model.addAttribute("carUserList", carList);
+        model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
+        return "submitApplicationUserFaultsElectrician";
+    }
+
+    @PostMapping(value = "/submit-application-electrician")
+    public String submitApplicationElectrician(@ModelAttribute(name = "submitApplication") SubmitApplicationUserFaultsDto submitApplicationUserFaultsDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+        Car car = carService.findById(submitApplicationUserFaultsDto.getCarId());
+
+        Notification notification = new Notification();
+        notification.setUser(users);
+        notification.setCar(car);
+        if (car != null) {
+            notification.setMark(car.getModels().getMark().getName());
+            notification.setModel(car.getModels().getName());
+        }
+        notification.setDateTime(new Date());
+        notification.setStatus(Status.NEW);
+        notification.setFaults(Faults.ELECTRICIAN);
+        notification.setDescription(submitApplicationUserFaultsDto.getDescription());
+        this.notificationService.save(notification);
+        return "mainPageUser";
+    }
+
+    @GetMapping(value = "/submit-application-faults-more")
+    public String submitApplicationFaultsUser(Model model) {
+        List<Car> carList = carService.getAllCarUser();
+        model.addAttribute("carUserList", carList);
+        model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
+        return "submitApplicationUserFaultsMore";
+    }
+
+    @PostMapping(value = "/submit-application-more")
+    public String submitApplicationMore(@ModelAttribute(name = "submitApplication") SubmitApplicationUserFaultsDto submitApplicationUserFaultsDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+        Car car = carService.findById(submitApplicationUserFaultsDto.getCarId());
+
+        Notification notification = new Notification();
+        notification.setUser(users);
+        notification.setCar(car);
+        if (car != null) {
+            notification.setMark(car.getModels().getMark().getName());
+            notification.setModel(car.getModels().getName());
+        }
+        notification.setDateTime(new Date());
+        notification.setStatus(Status.NEW);
+        notification.setFaults(Faults.MORE);
+        notification.setDescription(submitApplicationUserFaultsDto.getDescription());
         this.notificationService.save(notification);
         return "mainPageUser";
     }

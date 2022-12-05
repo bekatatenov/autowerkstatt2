@@ -1,6 +1,7 @@
 package com.autowerkstatt.autowerkstatt.service;
 
 import com.autowerkstatt.autowerkstatt.dao.NotificationRepository;
+import com.autowerkstatt.autowerkstatt.dto.SubmitApplicationUserFaultsDto;
 import com.autowerkstatt.autowerkstatt.entity.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ public class NotificationService {
     }
 
     public List<Notification> findAll() {
-       return this.notificationRepository.findAll();
+        return this.notificationRepository.findAll();
+    }
+
+    public List<Object[]> getByCarUser(Long id) {
+        return this.notificationRepository.getByCar(id);
     }
 }

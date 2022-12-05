@@ -45,6 +45,12 @@ public class Notification {
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
+    @Column(name = "model")
+    private String model;
+
+    @Column(name = "mark")
+    private String mark;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users user;
