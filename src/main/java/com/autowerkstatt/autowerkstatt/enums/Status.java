@@ -1,10 +1,18 @@
 package com.autowerkstatt.autowerkstatt.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public enum Status {
 
-    В_ОЖИДАНИИ,
-    НОВЫЙ,
-    ВЫПОЛНЕНО,
-    ОТКАЗАНО
+    NEW("НОВЫЙ"),
+    PENDING("В ОЖИДАНИИ"),
+    DONE("ВЫПОЛНЕННО"),
+    DENIED("ОТКАЗАНО");
 
+    private String translate;
 }
