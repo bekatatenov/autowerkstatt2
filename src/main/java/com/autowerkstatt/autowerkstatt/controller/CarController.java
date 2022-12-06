@@ -68,5 +68,18 @@ public class CarController {
         this.carService.addCar(car);
         return "mainPageUser";
     }
+
+    @GetMapping(value = "/getAllCarUser")
+    public String getAllCarUser(Model model) {
+        List<Car> carList = carService.getAllCarUser();
+        model.addAttribute("cars", carList);
+        return "myCars";
+    }
+
+    @RequestMapping(value = "/mainPage-car", method = RequestMethod.POST)
+    public String notificationReturnMainPage() {
+        return "mainPageUser";
+    }
+
 }
 

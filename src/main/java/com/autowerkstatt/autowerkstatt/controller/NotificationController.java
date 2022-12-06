@@ -162,4 +162,17 @@ public class NotificationController {
         this.notificationService.save(notification);
         return "mainPageUser";
     }
+
+    @GetMapping(value = "/get-my-notes")
+    public String getAllNotesUser(Model model) {
+        List<Notification> notesUser = notificationService.getNotesUser();
+        model.addAttribute("notesUser", notesUser);
+        return "notesUser";
+
+    }
+
+    @RequestMapping(value = "/mainPage-note", method = RequestMethod.POST)
+    public String notesUserReturnMainPage() {
+        return "mainPageUser";
+    }
 }
