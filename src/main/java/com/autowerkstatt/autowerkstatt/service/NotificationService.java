@@ -22,7 +22,7 @@ public class NotificationService {
         return this.notificationRepository.findAll();
     }
 
-    public List<Object[]> getByCarUser(Long id) {
-        return this.notificationRepository.getByCar(id);
+    public List<Notification> getNotesUser() {
+        return this.notificationRepository.getNotificationByStatus();
     }
 }

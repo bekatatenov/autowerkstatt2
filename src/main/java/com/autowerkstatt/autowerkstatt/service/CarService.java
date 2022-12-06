@@ -30,4 +30,8 @@ public class CarService {
     public Car findById(Long id) {
         return this.repository.findById(id).orElse(null);
     }
+
+    public List<Car> getCarByUser() {
+        return this.repository.findAll();
+    }
 }
