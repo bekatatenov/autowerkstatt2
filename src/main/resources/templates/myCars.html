@@ -8,17 +8,18 @@
 <body>
 <h3>Мои машины</h3>
 <table border="3">
-<tr>
-    <th>FIRST_NAME</th>
-    <th>LAST_NAME</th>
-    <th>MARKS</th>
-    <th>MODELS</th>
-</tr>
+    <tr>
+        <th>FIRST_NAME</th>
+        <th>LAST_NAME</th>
+        <th>MARKS</th>
+        <th>MODELS</th>
+    </tr>
     <tr th:each="carUser : ${cars}">
         <td th:text="${carUser.user.firstName}"></td>
         <td th:text="${carUser.user.lastName}"></td>
         <td th:text="${carUser.models.mark.name}"></td>
         <td th:text="${carUser.models.name}"></td>
+<!--        <input hidden="hidden" type="email" th:value="${carUser.user.getEmail()}" name="userEmail">-->
     </tr>
 </table>
 <br>

@@ -33,7 +33,11 @@ public class NotificationController {
 
     @GetMapping(value = "/user-notification")
     public String userNotificationList(Model model) {
-        List<Notification> notifications = notificationService.findAll();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+
+        List<Notification> notifications = notificationService.getNotificationByUserId(users.getId());
         model.addAttribute("notifications", notifications);
         return "notificationUser";
     }
@@ -45,7 +49,11 @@ public class NotificationController {
 
     @GetMapping(value = "/submit-application-faults-hodovka")
     public String submitApplicationFaultsUserHodovka(Model model) {
-        List<Car> carList = carService.getAllCarUser();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+
+        List<Car> carList = carService.getCarByUser(users.getId());
         model.addAttribute("carUserList", carList);
         model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
         return "submitApplicationUserFaultsHodovka";
@@ -75,7 +83,11 @@ public class NotificationController {
 
     @GetMapping(value = "/submit-application-faults-DVS")
     public String submitApplicationFaultsUserDVS(Model model) {
-        List<Car> carList = carService.getAllCarUser();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+
+        List<Car> carList = carService.getCarByUser(users.getId());
         model.addAttribute("carUserList", carList);
         model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
         return "submitApplicationUserFaultsDVS";
@@ -105,7 +117,11 @@ public class NotificationController {
 
     @GetMapping(value = "/submit-application-faults-electrician")
     public String submitApplicationFaultsUserElectrician(Model model) {
-        List<Car> carList = carService.getAllCarUser();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+
+        List<Car> carList = carService.getCarByUser(users.getId());
         model.addAttribute("carUserList", carList);
         model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
         return "submitApplicationUserFaultsElectrician";
@@ -135,7 +151,11 @@ public class NotificationController {
 
     @GetMapping(value = "/submit-application-faults-more")
     public String submitApplicationFaultsUser(Model model) {
-        List<Car> carList = carService.getAllCarUser();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+
+        List<Car> carList = carService.getCarByUser(users.getId());
         model.addAttribute("carUserList", carList);
         model.addAttribute("submitApplicationUser", new SubmitApplicationUserFaultsDto());
         return "submitApplicationUserFaultsMore";

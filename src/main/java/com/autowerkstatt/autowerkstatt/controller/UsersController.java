@@ -43,7 +43,7 @@ public class UsersController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView loginPage(@RequestParam(value = "error", required = false) String error,
-                                  @RequestParam(value = "logout",	required = false) String logout) {
+                                  @RequestParam(value = "logout", required = false) String logout) {
 
         ModelAndView model = new ModelAndView();
         if (error != null) {
@@ -114,5 +114,12 @@ public class UsersController {
         model.addAttribute("users", users);
         model.addAttribute("usersList", userService.findAll());
         return "mainPageUser";
+    }
+
+
+    @RequestMapping(value = "/mainPageAdmin", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ADMIN')")
+    public String mainPageAdmin() {
+        return "mainPageAdmin";
     }
 }

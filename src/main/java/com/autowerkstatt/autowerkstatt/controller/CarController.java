@@ -71,7 +71,11 @@ public class CarController {
 
     @GetMapping(value = "/getAllCarUser")
     public String getAllCarUser(Model model) {
-        List<Car> carList = carService.getAllCarUser();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+
+        List<Car> carList = carService.getCarByUserId(users.getId());
         model.addAttribute("cars", carList);
         return "myCars";
     }
