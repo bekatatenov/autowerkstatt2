@@ -23,15 +23,16 @@ public class CarService {
         this.repository.save(car);
     }
 
-    public List<Car> getAllCarUser() {
-        return this.repository.findAll();
-    }
 
     public Car findById(Long id) {
         return this.repository.findById(id).orElse(null);
     }
 
-    public List<Car> getCarByUser() {
-        return this.repository.findAll();
+    public List<Car> getCarByUser(Long userId) {
+        return this.repository.findCarByUser(userId);
+    }
+
+    public List<Car> getCarByUserId(Long userId) {
+        return this.repository.findCarByUser(userId);
     }
 }
