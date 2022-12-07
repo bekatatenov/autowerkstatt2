@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NotificationService {
@@ -29,5 +30,9 @@ public class NotificationService {
 
     public List<Notification> getNotificationByUserId(Long userId) {
         return this.notificationRepository.findNotificationByUser(userId);
+    }
+
+    public Optional<Notification> findById(Long id) {
+        return this.notificationRepository.findById(id);
     }
 }
