@@ -185,7 +185,11 @@ public class NotificationController {
 
     @GetMapping(value = "/get-my-notes")
     public String getAllNotesUser(Model model) {
-        List<Notification> notesUser = notificationService.getNotesUser();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Users users = usersDetailsService.findByEmailUser(auth.getName());
+
+        List<Notification> notesUser = notificationService.getNotesUser(users.getId());
         model.addAttribute("notesUser", notesUser);
         return "notesUser";
 

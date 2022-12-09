@@ -1,16 +1,15 @@
 package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.dto.AdminResponseToRequestDto;
+import com.autowerkstatt.autowerkstatt.entity.Car;
 import com.autowerkstatt.autowerkstatt.entity.Notification;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import com.autowerkstatt.autowerkstatt.enums.Status;
+import com.autowerkstatt.autowerkstatt.service.CarService;
 import com.autowerkstatt.autowerkstatt.service.EmailSenderService;
 import com.autowerkstatt.autowerkstatt.service.NotificationService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.List;
 
 @Controller
 public class AdminController {
+
+    @Autowired
+    private CarService carService;
 
     @Autowired
     private EmailSenderService emailSenderService;
@@ -67,5 +68,17 @@ public class AdminController {
         notification.setStatus(Status.PENDING);
         this.notificationService.save(notification);
         return "redirect:/admin-users-records";
+    }
+
+    @RequestMapping(value = "/mainPage-admin", method = RequestMethod.POST)
+    public String notesUserReturnMainPage() {
+        return "mainPageAdmin";
+    }
+
+    @GetMapping(value = "/users-authorization")
+    public String usersAuthorization(Model model) {
+        List<Car> carUsers = carService.findAllAuthorizationUser();
+        model.addAttribute("users", carUsers);
+        return "usersAuthorization";
     }
 }

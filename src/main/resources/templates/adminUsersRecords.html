@@ -24,7 +24,8 @@
                 <th>MARK</th>
                 <th>MODEL</th>
                 <th>STATUS</th>
-                <th>ACTION</th>
+                <th>EDIT</th>
+                <th>DENIED</th>
             </tr>
             </thead>
             <tbody>
@@ -41,10 +42,15 @@
                 <td th:text="${responseToRequestAdmin.mark}"></td>
                 <td th:text="${responseToRequestAdmin.model}"></td>
                 <td th:text="${responseToRequestAdmin.status}"></td>
-                <td><a class="btn btn-primary" th:href="@{/user-response/(id=${responseToRequestAdmin.id})}" role="button">Edit</a></td>
+                <td><a class="btn btn-warning" th:href="@{/user-response/(id=${responseToRequestAdmin.id})}" role="button">Edit</a></td>
+                <td><a class="btn btn-danger" href="#" role="button">Denied</a></td>
             </tr>
             </tbody>
         </table>
+        <br>
+        <form th:action="@{/mainPage-admin}" method="post">
+            <input type="submit" value="Return Main Page">
+        </form>
     </div>
 </body>
 </html>
