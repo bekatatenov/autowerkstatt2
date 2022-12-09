@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>My notes</title>
+    <link rel="stylesheet"
+          href="webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
 <h3>Записи на ремонт</h3>
-<table border="3">
+<table class="table table-hover table_morecondensed" id="myTable" border="3">
     <tr>
         <th>ID</th>
         <th>FIRST NAME</th>
@@ -21,6 +24,8 @@
         <th>MARK</th>
         <th>MODEL</th>
         <th>STATUS</th>
+        <th>AGREE</th>
+        <th>DENIED</th>
     </tr>
     <tr th:each="noteUser : ${notesUser}">
         <td th:text="${noteUser.id}"></td>
@@ -35,6 +40,9 @@
         <td th:text="${noteUser.mark}"></td>
         <td th:text="${noteUser.model}"></td>
         <td th:text="${noteUser.status}"></td>
+<!--        <td><a class="btn btn-warning" th:href="@{/user-response/(id=${responseToRequestAdmin.id})}" role="button">Edit</a></td>-->
+        <td><a class="btn-sm btn-success btn-space" href="#">Agree</a></td>
+        <td><a class="btn-sm btn-danger btn-space" href="#">Denied</a></td>
     </tr>
 </table>
 <br>

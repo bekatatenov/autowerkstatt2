@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/user-notification", "/mainPage-notification", "/submit-application-faults-hodovka", "/submit-application-hodovka", "/submit-application-faults-DVS", "/submit-application-DVS", "/submit-application-faults-electrician", "/submit-application-electrician", "/submit-application-faults-more", "/submit-application-more", "/get-my-notes", "/mainPage-note",
                         "/saveCarOpen", "/getModelsCar", "/addCarUser", "/getAllCarUser", "/mainPage-car").authenticated()
                 .antMatchers( "/mainPageUser", "/user-notification", "/saveCarOpen", "/getModelsCar", "/addCarUser").hasAnyAuthority("USER")
-                .antMatchers("/mainPageAdmin").hasAnyAuthority("ADMIN")
+                .antMatchers("/mainPageAdmin", "/admin-users-records", "/user-response", "/adminResponseToRequest", "/mainPage-admin", "users-authorization").hasAnyAuthority("ADMIN")
                 .and().csrf().disable()
                 .formLogin().successHandler(customizeAuthenticationSuccessHandler)
                 .loginPage("/login").failureUrl("/login?error=true")

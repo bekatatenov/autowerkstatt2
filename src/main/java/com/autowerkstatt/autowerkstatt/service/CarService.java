@@ -35,4 +35,8 @@ public class CarService {
     public List<Car> getCarByUserId(Long userId) {
         return this.repository.findCarByUser(userId);
     }
+
+    public List<Car> findAllAuthorizationUser() {
+        return this.repository.findAll();
+    }
 }

@@ -24,8 +24,8 @@ public class NotificationService {
         return this.notificationRepository.findAll();
     }
 
-    public List<Notification> getNotesUser() {
-        return this.notificationRepository.getNotificationByStatus();
+    public List<Notification> getNotesUser(Long userId) {
+        return this.notificationRepository.getNotificationByStatusAndUser(userId);
     }
 
     public List<Notification> getNotificationByUserId(Long userId) {

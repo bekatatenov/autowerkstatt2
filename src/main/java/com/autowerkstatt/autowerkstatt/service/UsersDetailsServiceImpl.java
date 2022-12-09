@@ -53,4 +53,8 @@ public class UsersDetailsServiceImpl implements UserDetailsService {
     public Users findByUsersId(Long id) {
         return this.userRepository.findById(id).orElseThrow(() -> new NoSuchElementException(String.format("Нет пользователя по id: " + id)));
     }
+
+    public List<Users> findAllAuthorizationUsers() {
+        return userRepository.findAll();
+    }
 }

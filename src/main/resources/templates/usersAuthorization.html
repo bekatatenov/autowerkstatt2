@@ -3,30 +3,32 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>My Cars</title>
+    <title>Users</title>
     <link rel="stylesheet"
           href="webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
-<h3>Мои машины</h3>
+<h3>Список авторизованных пользователей</h3>
 <table class="table table-hover table_morecondensed" id="myTable" border="3">
     <tr>
         <th>FIRST_NAME</th>
         <th>LAST_NAME</th>
         <th>MARKS</th>
         <th>MODELS</th>
+        <th>TEL NUMBER</th>
     </tr>
-    <tr th:each="carUser : ${cars}">
-        <td th:text="${carUser.user.firstName}"></td>
-        <td th:text="${carUser.user.lastName}"></td>
-        <td th:text="${carUser.models.mark.name}"></td>
-        <td th:text="${carUser.models.name}"></td>
-<!--        <input hidden="hidden" type="email" th:value="${carUser.user.getEmail()}" name="userEmail">-->
+    <tr th:each="authUser : ${users}">
+        <td th:text="${authUser.user.firstName}"></td>
+        <td th:text="${authUser.user.lastName}"></td>
+        <td th:text="${authUser.models.mark.name}"></td>
+        <td th:text="${authUser.models.name}"></td>
+        <td th:text="${authUser.user.telNumber}"></td>
+        <!--        <input hidden="hidden" type="email" th:value="${carUser.user.getEmail()}" name="userEmail">-->
     </tr>
 </table>
 <br>
-<form th:action="@{/mainPage-car}" method="post">
+<form th:action="@{/mainPage-admin}" method="post">
     <input type="submit" value="Return Main Page">
 </form>
 </body>
