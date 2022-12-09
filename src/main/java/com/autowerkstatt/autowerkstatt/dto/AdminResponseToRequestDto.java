@@ -14,8 +14,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminResponseToRequestDto {
-    private Date dateFrom;
-    private Date dateBefore;
+    private Long id;
+    private String dateFrom;
+    private String dateBefore;
     private BigDecimal price;
     private Status status;
 }

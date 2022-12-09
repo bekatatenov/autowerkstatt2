@@ -39,7 +39,7 @@ public class NotificationController {
 
         List<Notification> notifications = notificationService.getNotificationByUserId(users.getId());
         model.addAttribute("notifications", notifications);
-        return "notificationUser";
+        return "recordsUser";
     }
 
     @RequestMapping(value = "/mainPage-notification", method = RequestMethod.POST)

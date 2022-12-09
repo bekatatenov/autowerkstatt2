@@ -32,7 +32,11 @@ public class NotificationService {
         return this.notificationRepository.findNotificationByUser(userId);
     }
 
-    public Optional<Notification> findById(Long id) {
-        return this.notificationRepository.findById(id);
+    public Notification findById(Long id) {
+        return this.notificationRepository.findById(id).orElse(null);
+    }
+
+    public List<Notification> getNewRequestUser() {
+        return this.notificationRepository.getNotificationByStatusNew();
     }
 }

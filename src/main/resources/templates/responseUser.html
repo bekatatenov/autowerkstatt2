@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>User Response</title>
+</head>
+<body>
+<form th:action="@{/adminResponseToRequest}" method="post" th:object="${userResponse}">
+    <input hidden="hidden" type="email" th:value="${userResponse.user.getEmail()}" name="email">
+    <div><label> Имя : <input th:value="${userResponse.user.getFirstName()}" readonly="readonly"></label></div>
+    <div><label> Фамилия : <input th:value="${userResponse.user.getLastName()}" readonly="readonly"></label></div>
+    <div><label> Дата создания заявки : <input th:value="${userResponse.getDateTime()}" readonly="readonly"></label></div>
+    <div><label> Дата работы от : <input type="datetime-local" th:field="*{dateFrom}"></label></div>
+    <div><label> Время работы до : <input type="datetime-local" th:field="*{dateBefore}"></label></div>
+    <div><label> Описание : <input th:value="${userResponse.getDescription()}" readonly="readonly"></label></div>
+    <div><label> Цена : <input type="number" th:field="*{price}"></label></div>
+    <div><label> Услуга : <input th:value="${userResponse.getFaults()}" readonly="readonly"></label></div>
+    <div><label> Марка : <input th:value="${userResponse.getMark()}" readonly="readonly"></label></div>
+    <div><label> Модель : <input th:value="${userResponse.getModel()}" readonly="readonly"></label></div>
+    <div><input type="submit" value="Отправить клиенту"></div>
+     <input type="hidden" th:field="*{id}">
+</form>
+</body>
+</html>
