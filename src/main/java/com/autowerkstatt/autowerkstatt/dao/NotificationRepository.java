@@ -13,8 +13,12 @@ import java.util.List;
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
     @Query(value = "select * from notification " +
-            "where status != 'NEW'", nativeQuery = true)
+            "where status <> 'NEW'", nativeQuery = true)
     List<Notification> getNotificationByStatus();
+
+    @Query(value = "select * from notification " +
+            "where status = 'NEW'", nativeQuery = true)
+    List<Notification> getNotificationByStatusNew();
 
     @Query(value = "select * from notification n where n.user_id = :user_id", nativeQuery = true)
     List<Notification> findNotificationByUser(@Param("user_id") Long userId);

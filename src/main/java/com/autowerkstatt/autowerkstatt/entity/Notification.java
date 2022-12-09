@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,9 +28,11 @@ public class Notification {
     private Date dateTime;
 
     @Column(name = "date_from")
+    @DateTimeFormat(pattern ="dd.MM.yyyy hh:mm")
     private Date dateFrom;
 
     @Column(name = "date_before")
+    @DateTimeFormat(pattern ="dd.MM.yyyy hh:mm")
     private Date dateBefore;
 
     @Column(name = "price")
