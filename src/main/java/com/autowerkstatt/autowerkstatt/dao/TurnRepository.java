@@ -3,6 +3,7 @@ package com.autowerkstatt.autowerkstatt.dao;
 import com.autowerkstatt.autowerkstatt.entity.Turn;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,6 +33,6 @@ public interface TurnRepository extends JpaRepository<Turn, Long> {
 
     @Query(value = "select * from turn " +
             "inner join notification n on n.id = turn.notification_id " +
-            "where n.status in ('QUEUE', 'WORKING', 'DONE')", nativeQuery = true)
-    List<Turn> findTurnByStatusAndNotificationStatus();
+            "where n.status in ('QUEUE', 'WORKING', 'DONE') and n.user_id = :user_id", nativeQuery = true)
+    List<Turn> findTurnByStatusAndNotificationStatus(@Param(value = "user_id") Long userId);
 }
