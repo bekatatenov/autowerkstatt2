@@ -1,5 +1,6 @@
 package com.autowerkstatt.autowerkstatt.entity;
 
+import com.autowerkstatt.autowerkstatt.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,4 +23,8 @@ public class Turn {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "notification_id", referencedColumnName = "id")
     private Notification notification;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
 }

@@ -3,13 +3,11 @@ package com.autowerkstatt.autowerkstatt.controller;
 import com.autowerkstatt.autowerkstatt.dto.SubmitApplicationUserFaultsDto;
 import com.autowerkstatt.autowerkstatt.entity.Car;
 import com.autowerkstatt.autowerkstatt.entity.Notification;
+import com.autowerkstatt.autowerkstatt.entity.Turn;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import com.autowerkstatt.autowerkstatt.enums.Faults;
 import com.autowerkstatt.autowerkstatt.enums.Status;
-import com.autowerkstatt.autowerkstatt.service.CarService;
-import com.autowerkstatt.autowerkstatt.service.MasterService;
-import com.autowerkstatt.autowerkstatt.service.NotificationService;
-import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
+import com.autowerkstatt.autowerkstatt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,6 +29,9 @@ public class NotificationController {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private TurnService turnService;
 
     @GetMapping(value = "/user-notification")
     public String userNotificationList(Model model) {
@@ -193,7 +194,32 @@ public class NotificationController {
         List<Notification> notesUser = notificationService.getNotesUser(users.getId());
         model.addAttribute("notesUser", notesUser);
         return "notesUser";
+    }
 
+    @GetMapping(value = "/agree")
+    public String agree(@RequestParam Long notificationId) {
+        Notification notification = notificationService.findById(notificationId);
+        notification.setStatus(Status.QUEUE);
+        this.notificationService.save(notification);
+
+        Turn turn = new Turn();
+        turn.setNotification(notification);
+        turn.setStatus(Status.QUEUE);
+        this.turnService.save(turn);
+        return "redirect:/get-my-notes";
+    }
+
+    @GetMapping(value = "/denied")
+    public String denied(@RequestParam Long notificationId) {
+        Notification notification = notificationService.findById(notificationId);
+        notification.setStatus(Status.DENIED);
+        this.notificationService.save(notification);
+
+        Turn turn = new Turn();
+        turn.setNotification(notification);
+        turn.setStatus(Status.DENIED);
+        this.turnService.save(turn);
+        return "redirect:/get-my-notes";
     }
 
     @RequestMapping(value = "/mainPage-note", method = RequestMethod.POST)
