@@ -41,8 +41,8 @@
         <td th:text="${noteUser.model}"></td>
         <td th:text="${noteUser.status}"></td>
 <!--        <td><a class="btn btn-warning" th:href="@{/user-response/(id=${responseToRequestAdmin.id})}" role="button">Edit</a></td>-->
-        <td><a class="btn-sm btn-success btn-space" href="#">Agree</a></td>
-        <td><a class="btn-sm btn-danger btn-space" href="#">Denied</a></td>
+        <td><a class="btn-sm btn-success btn-space" th:href="@{/agree/(notificationId=${noteUser.id})}" role="button">Agree</a></td>
+        <td><a class="btn-sm btn-danger btn-space" th:href="@{/denied/(notificationId=${noteUser.id})}" role="button">Denied</a></td>
     </tr>
 </table>
 <br>

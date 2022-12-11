@@ -11,6 +11,7 @@ public enum Status {
 
     NEW("НОВЫЙ"),
     PENDING("В ОЖИДАНИИ"),
+    QUEUE("В ОЧЕРЕДИ"),
     WORKING("В РАБОТЕ"),
     DONE("ВЫПОЛНЕННО"),
     DENIED("ОТКАЗАНО");
