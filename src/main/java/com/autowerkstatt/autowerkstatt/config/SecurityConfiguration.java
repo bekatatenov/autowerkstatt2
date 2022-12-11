@@ -54,11 +54,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/", "/login", "/register", "/registration", "/forgotPassword", "/passwordRecoveryEmail", "/newPasswordUser").permitAll()
                 .antMatchers("/mainPageUser", "/userDropDownList",
-                        "/user-notification", "/mainPage-notification", "/submit-application-faults-hodovka", "/submit-application-hodovka", "/submit-application-faults-DVS", "/submit-application-DVS", "/submit-application-faults-electrician", "/submit-application-electrician", "/submit-application-faults-more", "/submit-application-more", "/get-my-notes", "/mainPage-note",
-                        "/saveCarOpen", "/getModelsCar", "/addCarUser", "/getAllCarUser", "/mainPage-car").authenticated()
+                        "/user-notification", "/mainPage-notification", "/submit-application-faults-hodovka", "/submit-application-hodovka", "/submit-application-faults-DVS", "/submit-application-DVS", "/submit-application-faults-electrician", "/submit-application-electrician", "/submit-application-faults-more", "/submit-application-more", "/get-my-notes", "/agree", "/denied", "/mainPage-note",
+                        "/saveCarOpen", "/getModelsCar", "/addCarUser", "/getAllCarUser", "/mainPage-car",
+                        "/mainPage-user", "/turn-works").authenticated()
                 .antMatchers( "/mainPageUser", "/user-notification", "/saveCarOpen", "/getModelsCar", "/addCarUser").hasAnyAuthority("USER")
                 .antMatchers("/mainPageAdmin", "/admin-users-records", "/user-response", "/adminResponseToRequest", "/mainPage-admin", "users-authorization",
-                        "/return-page-master", "/addMasterForm", "/saveMaster", "/show-update-master-form", "/not-active-master").hasAnyAuthority("ADMIN")
+                        "/return-page-master", "/addMasterForm", "/saveMaster", "/show-update-master-form", "/not-active-master",
+                        "/turn-hodovka", "/turn-electrician", "/turn-DVS", "/turn-more", "/mainPage-turn").hasAnyAuthority("ADMIN")
                 .and().csrf().disable()
                 .formLogin().successHandler(customizeAuthenticationSuccessHandler)
                 .loginPage("/login").failureUrl("/login?error=true")

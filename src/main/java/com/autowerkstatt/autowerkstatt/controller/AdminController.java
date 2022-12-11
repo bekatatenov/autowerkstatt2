@@ -52,8 +52,8 @@ public class AdminController {
         Notification notification = notificationService.findById(adminResponseToRequestDto.getId());
         Users users = usersDetailsService.findByEmailUser(email);
 
-        emailSenderService.sendEmail(users.getEmail(), "Autowerkstatt", "Администратор ответил на вашу заявку, перейдите в свои записи." +
-                "Если согласны то нажмите согласиться, иначе откажитесь");
+        emailSenderService.sendEmail(users.getEmail(), "Autowerkstatt", "Администратор ответил на вашу заявку, перейдите в свои записи. " +
+                "http://localhost:8081/get-my-notes Если согласны то нажмите согласиться, иначе откажитесь");
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
         try {
