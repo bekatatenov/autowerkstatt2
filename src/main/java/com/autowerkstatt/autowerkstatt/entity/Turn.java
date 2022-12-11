@@ -22,8 +22,4 @@ public class Turn {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "notification_id", referencedColumnName = "id")
     private Notification notification;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "master_id", referencedColumnName = "id")
-    private Master master;
 }

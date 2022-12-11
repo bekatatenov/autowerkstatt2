@@ -18,5 +18,7 @@ public class AdminResponseToRequestDto {
     private String dateFrom;
     private String dateBefore;
     private BigDecimal price;
+    private String masterName;
+    private Long masterId;
     private Status status;
 }

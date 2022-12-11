@@ -58,6 +58,10 @@ public class Notification {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private Users user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "master_id", referencedColumnName = "id")
+    private Master master;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
