@@ -22,4 +22,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
 
     @Query(value = "select * from notification n where n.user_id = :user_id and status = 'NEW'", nativeQuery = true)
     List<Notification> findNotificationByUser(@Param("user_id") Long userId);
+
+    @Query(value = "select m.first_name, m.last_name, m.faults, m.status from masters m " +
+            "where m.faults = 'HODOVKA' and m.status = 'ACTIVE'", nativeQuery = true)
+    List<Notification> getNotificationByMasterFaults();
 }

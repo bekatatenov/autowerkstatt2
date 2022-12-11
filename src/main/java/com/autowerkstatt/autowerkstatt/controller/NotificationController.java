@@ -7,6 +7,7 @@ import com.autowerkstatt.autowerkstatt.entity.Users;
 import com.autowerkstatt.autowerkstatt.enums.Faults;
 import com.autowerkstatt.autowerkstatt.enums.Status;
 import com.autowerkstatt.autowerkstatt.service.CarService;
+import com.autowerkstatt.autowerkstatt.service.MasterService;
 import com.autowerkstatt.autowerkstatt.service.NotificationService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

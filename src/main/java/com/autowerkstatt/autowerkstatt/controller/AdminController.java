@@ -2,13 +2,11 @@ package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.dto.AdminResponseToRequestDto;
 import com.autowerkstatt.autowerkstatt.entity.Car;
+import com.autowerkstatt.autowerkstatt.entity.Master;
 import com.autowerkstatt.autowerkstatt.entity.Notification;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import com.autowerkstatt.autowerkstatt.enums.Status;
-import com.autowerkstatt.autowerkstatt.service.CarService;
-import com.autowerkstatt.autowerkstatt.service.EmailSenderService;
-import com.autowerkstatt.autowerkstatt.service.NotificationService;
-import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
+import com.autowerkstatt.autowerkstatt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +39,7 @@ public class AdminController {
         return "adminUsersRecords";
     }
 
-    @RequestMapping(value = "/user-response", method = RequestMethod.GET)
+    @GetMapping(value = "/user-response")
     public ModelAndView userResponse(Long id) {
         ModelAndView modelAndView = new ModelAndView("responseUser");
         modelAndView.addObject("userResponse", notificationService.findById(id));
