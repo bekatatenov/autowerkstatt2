@@ -28,7 +28,7 @@
                                     <h6 class="mb-0">Имя</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input th:value="${firstName}" type="text" name="firstName" class="form-control form-control-lg"/>
+                                    <input th:value="${firstName}" pattern="^[А-Яа-яЁё\s]+$" type="text" name="firstName" class="form-control form-control-lg" placeholder="Только на русском"/>
                                 </div>
                             </div>
                             <hr class="mx-n3">
@@ -37,7 +37,7 @@
                                     <h6 class="mb-0"> Фамилия</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input th:value="${lastName}" type="text" name="lastName" class="form-control form-control-lg"/>
+                                    <input th:value="${lastName}" pattern="^[А-Яа-яЁё\s]+$" type="text" name="lastName" class="form-control form-control-lg" placeholder="Только на русском"/>
                                 </div>
                             </div>
                             <hr class="mx-n3">
@@ -46,7 +46,7 @@
                                     <h6 class="mb-0">Электронная почта Email</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input th:value="${email}" type="text" name="email" placeholder="example@example.com" class="form-control form-control-lg"/>
+                                    <input th:value="${email}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="text" name="email" placeholder="example@example.com" class="form-control form-control-lg"/>
                                 </div>
                             </div>
                             <hr class="mx-n3">
@@ -55,7 +55,7 @@
                                     <h6 class="mb-0">Пароль</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input th:value="${password}" type="password" name="password" class="form-control form-control-lg"/>
+                                    <input th:value="${password}" pattern="^[a-zA-Z0-9]+$" type="password" name="password" class="form-control form-control-lg" placeholder="Комбинированное поле буквы(латиница) и цифры"/>
                                 </div>
                             </div>
                             <hr class="mx-n3">
@@ -64,7 +64,7 @@
                                     <h6 class="mb-0">Номер телефона</h6>
                                 </div>
                                 <div class="col-md-9 pe-5">
-                                    <input th:value="${telNumber}" type="number" name="telNumber" class="form-control form-control-lg"/>
+                                    <input th:value="${telNumber}" pattern="[0-9]{9}" type="number" name="telNumber" class="form-control form-control-lg" placeholder="Девять цифр без нуля в начале"/>
                                 </div>
                             </div>
                             <div class="px-5 py-4">
