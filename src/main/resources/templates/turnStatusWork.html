@@ -41,6 +41,7 @@
             <td th:text="${carTurn.notification.mark}"></td>
             <td th:text="${carTurn.notification.model}"></td>
             <td th:text="${carTurn.status}"></td>
+            <input hidden="hidden" type="email" th:value="${carTurn.notification.user.getEmail()}" name="email">
             <td>
                 <a th:href="@{/done(turnId=${carTurn.id})}" class="btn btn-success">Done</a>
             </td>

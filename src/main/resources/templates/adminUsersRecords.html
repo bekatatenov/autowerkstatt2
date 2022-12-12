@@ -45,10 +45,11 @@
                 <td th:text="${responseToRequestAdmin.mark}"></td>
                 <td th:text="${responseToRequestAdmin.model}"></td>
                 <td th:text="${responseToRequestAdmin.status}"></td>
+                <input hidden="hidden" type="email" th:value="${responseToRequestAdmin.user.getEmail()}" name="email">
                 <td><a class="btn btn-warning" th:href="@{/user-response/(id=${responseToRequestAdmin.id})}"
                        role="button">Edit</a>
                 </td>
-                <td><a class="btn btn-danger" href="#" role="button">Denied</a></td>
+                <td><a class="btn btn-danger" th:href="@{/denied-response/(responseId=${responseToRequestAdmin.id})}" role="button">Denied</a></td>
             </tr>
             </tbody>
         </table>
