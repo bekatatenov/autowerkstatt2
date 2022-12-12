@@ -2,6 +2,7 @@ package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.entity.Turn;
 import com.autowerkstatt.autowerkstatt.entity.Users;
+import com.autowerkstatt.autowerkstatt.enums.Faults;
 import com.autowerkstatt.autowerkstatt.enums.Status;
 import com.autowerkstatt.autowerkstatt.service.TurnService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
@@ -94,6 +95,15 @@ public class TurnController {
         this.turnService.save(turn);
         return "redirect:/turn-more";
     }
+
+    @GetMapping(value = "/turn-working")
+    public String turnWorking(Model model) {
+        List<Turn> turnList = turnService.findTurnByStatusWorking();
+        model.addAttribute("turnStatusWorking", turnList);
+        return "turnStatusWork";
+    }
+
+
 
     @RequestMapping(value = "/mainPage-turn", method = RequestMethod.POST)
     public String returnMainPageAdmin() {

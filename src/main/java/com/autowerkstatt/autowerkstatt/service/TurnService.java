@@ -41,4 +41,8 @@ public class TurnService {
     public List<Turn> findTurnByStatusAndUser(Long userId) {
         return this.turnRepository.findTurnByStatusAndNotificationStatus(userId);
     }
+
+    public List<Turn> findTurnByStatusWorking() {
+        return this.turnRepository.findTurnsByStatus();
+    }
 }
