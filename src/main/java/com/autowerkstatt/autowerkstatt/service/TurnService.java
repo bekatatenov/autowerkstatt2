@@ -45,4 +45,12 @@ public class TurnService {
     public List<Turn> findTurnByStatusWorking() {
         return this.turnRepository.findTurnsByStatus();
     }
+
+    public List<Turn> findTurnByStatusDone() {
+        return this.turnRepository.findTurnBy();
+    }
+
+    public Integer findTurnByFaultsCount(Long turnId) {
+        return this.turnRepository.getTurnByFaults(turnId);
+    }
 }

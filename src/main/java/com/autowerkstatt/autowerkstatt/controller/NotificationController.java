@@ -205,6 +205,7 @@ public class NotificationController {
         Turn turn = new Turn();
         turn.setNotification(notification);
         turn.setStatus(Status.QUEUE);
+        turn.setFaults(notification.getFaults());
         this.turnService.save(turn);
         return "redirect:/get-my-notes";
     }

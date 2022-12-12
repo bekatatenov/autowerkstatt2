@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Turn Working</title>
-  <link rel="stylesheet"
-        href="webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet"
+          href="webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
 <div class="container">
@@ -26,6 +26,7 @@
             <th>MARK</th>
             <th>MODEL</th>
             <th>STATUS</th>
+            <th>ACTION</th>
         </tr>
         <tr th:each="carTurn : ${turnStatusWorking}">
             <td th:text="${carTurn.id}"></td>
@@ -40,6 +41,9 @@
             <td th:text="${carTurn.notification.mark}"></td>
             <td th:text="${carTurn.notification.model}"></td>
             <td th:text="${carTurn.status}"></td>
+            <td>
+                <a th:href="@{/done(turnId=${carTurn.id})}" class="btn btn-success">Done</a>
+            </td>
         </tr>
     </table>
     <br/>
