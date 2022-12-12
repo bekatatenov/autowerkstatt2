@@ -8,38 +8,42 @@
     <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body>
-<h3>Notification Table User</h3>
-<table class="table table-hover table_morecondensed" id="myTable" border="3">
-    <tr>
-        <th>FIRST NAME</th>
-        <th>LAST NAME</th>
-        <th>DATE OF CREATION</th>
-        <th>DATE FROM</th>
-        <th>DATE BEFORE</th>
-        <th>DESCRIPTION</th>
-        <th>PRICE</th>
-        <th>FAULTS</th>
-        <th>MARK</th>
-        <th>MODEL</th>
-        <th>STATUS</th>
-    </tr>
-    <tr th:each="notification : ${notifications}">
-        <td th:text="${notification.user.firstName}"></td>
-        <td th:text="${notification.user.lastName}"></td>
-        <td th:text="${notification.dateTime}"></td>
-        <td th:text="${notification.dateFrom}"></td>
-        <td th:text="${notification.dateBefore}"></td>
-        <td th:text="${notification.description}"></td>
-        <td th:text="${notification.price}"></td>
-        <td th:text="${notification.faults}"></td>
-        <td th:text="${notification.mark}"></td>
-        <td th:text="${notification.model}"></td>
-        <td th:text="${notification.status}"></td>
-    </tr>
-</table>
-<br>
-<form th:action="@{/mainPage-note}" method="post">
-    <input type="submit" value="Return Main Page">
-</form>
+<div class="container">
+    <h3>Notification Table User</h3>
+    <hr/>
+
+    <table class="table table-bordered table-striped" id="myTable" border="3">
+        <tr>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>DATE OF CREATION</th>
+            <th>DATE FROM</th>
+            <th>DATE BEFORE</th>
+            <th>DESCRIPTION</th>
+            <th>PRICE</th>
+            <th>FAULTS</th>
+            <th>MARK</th>
+            <th>MODEL</th>
+            <th>STATUS</th>
+        </tr>
+        <tr th:each="notification : ${notifications}">
+            <td th:text="${notification.user.firstName}"></td>
+            <td th:text="${notification.user.lastName}"></td>
+            <td th:text="${notification.dateTime}"></td>
+            <td th:text="${notification.dateFrom}"></td>
+            <td th:text="${notification.dateBefore}"></td>
+            <td th:text="${notification.description}"></td>
+            <td th:text="${notification.price}"></td>
+            <td th:text="${notification.faults}"></td>
+            <td th:text="${notification.mark}"></td>
+            <td th:text="${notification.model}"></td>
+            <td th:text="${notification.status}"></td>
+        </tr>
+    </table>
+    <br>
+    <form th:action="@{/mainPage-note}" method="post">
+        <input type="submit" value="Return Main Page">
+    </form>
+</div>
 </body>
 </html>
