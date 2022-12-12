@@ -25,6 +25,7 @@
             <th>МАРКА</th>
             <th>МОДЕЛЬ</th>
             <th>СТАТУС</th>
+            <th>ACTION</th>
         </tr>
         <tr th:each="userTurn : ${turnHodovka}">
             <td th:text="${userTurn.notification.user.firstName}"></td>
@@ -38,6 +39,9 @@
             <td th:text="${userTurn.notification.car.models.mark.name}"></td>
             <td th:text="${userTurn.notification.car.models.name}"></td>
             <td th:text="${userTurn.status}"></td>
+            <td>
+                <a th:href="@{save-application-hodovka(turnId=${userTurn.id})}" class="btn btn-warning">Save</a>
+            </td>
         </tr>
     </table>
     <br>

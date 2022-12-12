@@ -2,6 +2,7 @@ package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.entity.Turn;
 import com.autowerkstatt.autowerkstatt.entity.Users;
+import com.autowerkstatt.autowerkstatt.enums.Status;
 import com.autowerkstatt.autowerkstatt.service.TurnService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -63,6 +61,38 @@ public class TurnController {
         List<Turn> turnListWorks = turnService.findTurnByStatusAndUser(users.getId());
         model.addAttribute("carTurnWork", turnListWorks);
         return "turnWorks";
+    }
+
+    @GetMapping(value = "/save-application-hodovka")
+    public String saveApplicationHodovka(@RequestParam Long turnId) {
+        Turn turn = turnService.findById(turnId);
+        turn.setStatus(Status.WORKING);
+        this.turnService.save(turn);
+        return "redirect:/turn-hodovka";
+    }
+
+    @GetMapping(value = "/save-application-electrician")
+    public String saveApplicationElectrician(@RequestParam Long turnId) {
+        Turn turn = turnService.findById(turnId);
+        turn.setStatus(Status.WORKING);
+        this.turnService.save(turn);
+        return "redirect:/turn-electrician";
+    }
+
+    @GetMapping(value = "/save-application-DVS")
+    public String saveApplicationDVS(@RequestParam Long turnId) {
+        Turn turn = turnService.findById(turnId);
+        turn.setStatus(Status.WORKING);
+        this.turnService.save(turn);
+        return "redirect:/turn-DVS";
+    }
+
+    @GetMapping(value = "/save-application-more")
+    public String saveApplicationMore(@RequestParam Long turnId) {
+        Turn turn = turnService.findById(turnId);
+        turn.setStatus(Status.WORKING);
+        this.turnService.save(turn);
+        return "redirect:/turn-more";
     }
 
     @RequestMapping(value = "/mainPage-turn", method = RequestMethod.POST)

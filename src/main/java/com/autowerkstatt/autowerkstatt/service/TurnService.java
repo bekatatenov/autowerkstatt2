@@ -18,6 +18,10 @@ public class TurnService {
         this.turnRepository.save(turn);
     }
 
+    public Turn findById(Long turnId) {
+        return this.turnRepository.findById(turnId).orElse(null);
+    }
+
     public List<Turn> findTurnByHodovkaAndStatus() {
         return this.turnRepository.findTurnByStatus();
     }

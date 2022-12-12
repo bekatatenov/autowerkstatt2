@@ -56,5 +56,4 @@ public class MasterController {
     public String masterPageReturn() {
         return "masterPage";
     }
-
 }
