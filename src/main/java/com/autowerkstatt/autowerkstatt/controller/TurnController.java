@@ -5,6 +5,7 @@ import com.autowerkstatt.autowerkstatt.entity.Turn;
 import com.autowerkstatt.autowerkstatt.entity.Users;
 import com.autowerkstatt.autowerkstatt.enums.Faults;
 import com.autowerkstatt.autowerkstatt.enums.Status;
+import com.autowerkstatt.autowerkstatt.service.EmailSenderService;
 import com.autowerkstatt.autowerkstatt.service.TurnService;
 import com.autowerkstatt.autowerkstatt.service.UsersDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class TurnController {
 
     @Autowired
     private UsersDetailsServiceImpl usersDetailsService;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @GetMapping(value = "/turn-hodovka")
     public String turnHodovka(Model model) {

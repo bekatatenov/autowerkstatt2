@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-2">Marks</div>
                     <div class="col-8">
-                        <select id="marks" class="form-control">
+                        <select id="marks" required="required" class="form-control">
                             <option value='-1'>SELECT</option>
                             <option th:each="mark : ${marksList}" th:value="${mark[0]}"
                                     th:text="${mark[1]}"/>
@@ -54,17 +54,17 @@
                 <div class="row">
                     <div class="col-2">Models</div>
                     <div class="col-8">
-                        <select id="models" class="form-control" th:field="*{modelsName}">
+                        <select id="models" required="required" class="form-control" th:field="*{modelsName}">
                             <option th:value='-1'>SELECT</option>
                         </select>
                         <br>
-                        <div><input type="submit" value="Добавить машину"/></div>
+                        <div><input type="submit" value="Добавить машину" class="btn btn-primary btn-lg"/></div>
                         <br>
                     </div>
                 </div>
             </form>
             <form th:action="@{/mainPage-car}" method="post">
-                <input type="submit" value="Return Main Page">
+                <input type="submit" value="Return Main Page" class="btn btn-primary btn-lg">
             </form>
         </div>
     </div>

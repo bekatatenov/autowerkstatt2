@@ -1,10 +1,7 @@
 package com.autowerkstatt.autowerkstatt.controller;
 
 import com.autowerkstatt.autowerkstatt.dto.AdminResponseToRequestDto;
-import com.autowerkstatt.autowerkstatt.entity.Car;
-import com.autowerkstatt.autowerkstatt.entity.Master;
-import com.autowerkstatt.autowerkstatt.entity.Notification;
-import com.autowerkstatt.autowerkstatt.entity.Users;
+import com.autowerkstatt.autowerkstatt.entity.*;
 import com.autowerkstatt.autowerkstatt.enums.Status;
 import com.autowerkstatt.autowerkstatt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,9 @@ public class AdminController {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private TurnService turnService;
+
     @GetMapping(value = "/admin-users-records")
     public String adminResponseToRequest(Model model) {
         model.addAttribute("notifications", notificationService.getNewRequestUser());
@@ -53,7 +53,7 @@ public class AdminController {
         Users users = usersDetailsService.findByEmailUser(email);
 
         emailSenderService.sendEmail(users.getEmail(), "Autowerkstatt", "Администратор ответил на вашу заявку, перейдите в свои записи. " +
-                "http://localhost:8081/get-my-notes Если согласны то нажмите согласиться, иначе откажитесь");
+                " Если согласны то нажмите согласиться, иначе откажитесь");
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
         try {
@@ -65,6 +65,22 @@ public class AdminController {
         notification.setPrice(adminResponseToRequestDto.getPrice());
         notification.setStatus(Status.PENDING);
         this.notificationService.save(notification);
+        return "redirect:/admin-users-records";
+    }
+
+    @GetMapping(value = "/denied-response")
+    public String denied(@RequestParam Long responseId, @RequestParam String email) {
+        Notification notification = notificationService.findById(responseId);
+        notification.setStatus(Status.DENIED);
+        this.notificationService.save(notification);
+        Users users = usersDetailsService.findByEmailUser(email);
+
+        emailSenderService.sendEmail(users.getEmail(), "Autowerkstatt", "Ваша заявка была отменена так как мы не можем решить вашу проблему.");
+
+        Turn turn = new Turn();
+        turn.setNotification(notification);
+        turn.setStatus(Status.DENIED);
+        this.turnService.save(turn);
         return "redirect:/admin-users-records";
     }
 

@@ -18,12 +18,12 @@
     <hr/>
 
     <form th:action="@{/saveMaster}" th:object="${master}" method="post">
-        <input type="text" th:field="*{firstName}" class="form-control col-4 mb-4" placeholder="Enter First Name"/>
-        <input type="text" th:field="*{lastName}" class="form-control col-4 mb-4" placeholder="Enter Last Name"/>
-        <input type="number" th:field="*{telNumber}" class="form-control col-4 mb-4" placeholder="Enter Tel Number"/>
+        <input type="text" th:field="*{firstName}" required="required" class="form-control col-4 mb-4" placeholder="Enter First Name" readonly="readonly"/>
+        <input type="text" th:field="*{lastName}" required="required" class="form-control col-4 mb-4" placeholder="Enter Last Name" readonly="readonly"/>
+        <input type="number" th:field="*{telNumber}" required="required" class="form-control col-4 mb-4" placeholder="Enter Tel Number" readonly="readonly"/>
         <div class="form-group">
             <label for="faults">Faults</label>
-            <select class="form-select selectpicker show-tick" th:field="*{faults}" id="faults">
+            <select class="form-select selectpicker show-tick" required="required" th:field="*{faults}" id="faults">
                 <option value="">Faults</option>
                 <option th:each="value : ${T(com.autowerkstatt.autowerkstatt.enums.Faults).values()}"
                         th:value="${value.name()}"
@@ -36,7 +36,7 @@
     </form>
     <hr/>
     <form th:action="@{/return-page-master}" method="post">
-        <input type="submit" value="Return Main Page">
+        <input type="submit" value="Return Main Page" class="btn btn-primary btn-lg">
     </form>
 </div>
 </body>
