@@ -13,22 +13,22 @@ public interface TurnRepository extends JpaRepository<Turn, Long> {
 
     @Query(value = "select * from turn " +
             "inner join notification n on n.id = turn.notification_id " +
-            "where faults = 'HODOVKA' and n.status <> 'DENIED'", nativeQuery = true)
+            "where faults = 'HODOVKA' and turn.status = 'QUEUE'", nativeQuery = true)
     List<Turn> findTurnByStatus();
 
     @Query(value = "select * from turn " +
             "inner join notification n on n.id = turn.notification_id " +
-            "where faults = 'ELECTRICIAN' and n.status <> 'DENIED'", nativeQuery = true)
+            "where faults = 'ELECTRICIAN' and turn.status = 'QUEUE'", nativeQuery = true)
     List<Turn> findTurnsBy();
 
     @Query(value = "select * from turn " +
             "inner join notification n on n.id = turn.notification_id " +
-            "where faults = 'INTERNAL_COMBUSTION_ENGINE' and n.status <> 'DENIED'", nativeQuery = true)
+            "where faults = 'INTERNAL_COMBUSTION_ENGINE' and turn.status = 'QUEUE'", nativeQuery = true)
     List<Turn> findTurnAndStatus();
 
     @Query(value = "select * from turn " +
             "inner join notification n on n.id = turn.notification_id " +
-            "where faults = 'MORE' and n.status <> 'DENIED'", nativeQuery = true)
+            "where faults = 'MORE' and turn.status = 'QUEUE'", nativeQuery = true)
     List<Turn> findTurnByStatusAndNotification();
 
     @Query(value = "select * from turn " +
