@@ -1,5 +1,6 @@
 package com.autowerkstatt.autowerkstatt.entity;
 
+import com.autowerkstatt.autowerkstatt.enums.Faults;
 import com.autowerkstatt.autowerkstatt.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,4 +28,8 @@ public class Turn {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "faults")
+    private Faults faults;
 }
