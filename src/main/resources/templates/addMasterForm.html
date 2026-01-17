@@ -18,9 +18,9 @@
     <hr/>
 
     <form th:action="@{/saveMaster}" th:object="${master}" method="post">
-        <input type="text" th:field="*{firstName}" required="required" class="form-control col-4 mb-4" placeholder="Enter First Name" readonly="readonly"/>
-        <input type="text" th:field="*{lastName}" required="required" class="form-control col-4 mb-4" placeholder="Enter Last Name" readonly="readonly"/>
-        <input type="number" th:field="*{telNumber}" required="required" class="form-control col-4 mb-4" placeholder="Enter Tel Number" readonly="readonly"/>
+        <input type="text" th:field="*{firstName}" required="required" class="form-control col-4 mb-4" placeholder="Enter First Name"/>
+        <input type="text" th:field="*{lastName}" required="required" class="form-control col-4 mb-4" placeholder="Enter Last Name"/>
+        <input type="number" th:field="*{telNumber}" required="required" class="form-control col-4 mb-4" placeholder="Enter Tel Number"/>
         <div class="form-group">
             <label for="faults">Faults</label>
             <select class="form-select selectpicker show-tick" required="required" th:field="*{faults}" id="faults">

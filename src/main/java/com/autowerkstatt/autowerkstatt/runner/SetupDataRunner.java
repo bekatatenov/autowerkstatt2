@@ -46,9 +46,9 @@
 //
 //        modelsRepository.saveAll(Arrays.asList(lx470, gx470, lx570, camry70, landCruiser, rav4));
 //
-////        Users admin = new Users(1L, "Admin", "Adminov", "admin", 777777, "testtestovvv7@gmail.com", Roles.ADMIN, true);
-////        admin.setPassword(passwordEncoder.encode("admin"));
-////
-////        usersRepository.saveAll(List.of(admin));
+//        Users admin = new Users(1L, "Admin", "Adminov", "admin", 777777, "testtestovvv7@gmail.com", Roles.ADMIN, true);
+//        admin.setPassword(passwordEncoder.encode("admin"));
+//
+//        usersRepository.saveAll(List.of(admin));
 //    }
 //}
