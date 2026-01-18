@@ -16,11 +16,6 @@
     <hr/>
     <table class="table table-bordered table-striped" id="myTable" border="3">
         <tr>
-<!--            <th>FIRST NAME</th>-->
-<!--            <th>LAST NAME</th>-->
-<!--            <th>DATE OF CREATION</th>-->
-<!--            <th>DATE FROM</th>-->
-<!--            <th>DATE BEFORE</th>-->
             <th>DESCRIPTION</th>
             <th>PRICE</th>
             <th>FAULTS</th>
@@ -30,11 +25,7 @@
             <th>COUNT</th>
         </tr>
         <tr th:each="workDone : ${turnDone}">
-<!--            <td th:text="${workDone.notification.user.firstName}"></td>-->
-<!--            <td th:text="${workDone.notification.user.lastName}"></td>-->
-<!--            <td th:text="${workDone.notification.dateTime}"></td>-->
-<!--            <td th:text="${workDone.notification.dateFrom}"></td>-->
-<!--            <td th:text="${workDone.notification.dateBefore}"></td>-->
+
             <td th:text="${workDone.notification.description}"></td>
             <td th:text="${workDone.notification.price}"></td>
             <td th:text="${workDone.notification.faults}"></td>
